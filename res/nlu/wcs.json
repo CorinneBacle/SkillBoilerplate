@@ -1,15 +1,15 @@
 {
   "workspace": {
     "en-US": {
-      "name": "your workspace name",
-      "workspace_id": "your workspace id"
+      "name": "jokes",
+      "workspace_id": "530d3d0f-1a61-4751-b6ba-a331103a925d"
     }
   },
   "credentials": {
-    "url": "your wcs url",
-    "version": "your wcs version",
-    "version_date": "your wcs version date",
-    "password": "your wcs password",
-    "username": "your wcs username"
+    "url": "https://gateway.watsonplatform.net/assistant/api/v1/workspaces/530d3d0f-1a61-4751-b6ba-a331103a925d/message/",
+    "version": "v1",
+    "version_date": "2017-04-21",
+    "password": "TKuGTs7nWumS",
+    "username": "aabbd7c0-de10-486e-b369-d4f14d0f4f3c"
   }
 }
