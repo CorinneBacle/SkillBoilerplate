@@ -10,6 +10,24 @@ const {handler} = require('skill-sdk-nodejs');
 
 const evaluation = 'evaluation';
 const entities = 'entities';
+const request = require('request');
+
+const getJoke = function(url, callback) {
+ request.get({
+     url: url,
+     headers: { 'Accept': 'application/json' }
+     }, (err, response, body) => {
+         if (err) {
+             callback(err);
+         } else {
+             let result = JSON.parse(body);
+             callback(null, result);
+         }
+     }
+ );
+}
+
+
 
 // Expertise translations map
 const languageResource = {
@@ -90,17 +108,47 @@ const stateDefaultActions = handler.createActionsHandler({
     },
     //this is an example of an intent using wcs - in order for this to work you need your own wcs workspace and intents
     //and change the intents name with your own
-    'tell-me-a-joke': (request, response, context) => {
-        handler.converse(request, response, context, converseCallback);
-    },
-    'unhandled': (request, response, context) => {
-        response.say(handler.t('TRY_AGAIN')).send();
-    },
+    'dad-joke': (request, response, context) => {
+ getJoke(
+     "https://icanhazdadjoke.com",
+     (err, result) => {
+         if (err) {
+             response.say("I'm sorry, I'm having trouble remembering a joke, give me second and ask again.").send();
+         } else {
+             response.say(result.joke).send();
+         }
+     }
+ );
+},
+'chuck-norris-joke': (request, response, context) => {
+ getJoke(
+     "https://api.chucknorris.io/jokes/random",
+     (err, result) => {
+         if (err) {
+             response.say("I'm sorry, I'm having trouble remembering a joke, give me second and ask again.").send();
+         } else {
+             response.say(result.value).send();
+         }
+     }
+ );
+},
+
+
+  'unhandled': (request, response, context) => {
+ handler.converse(request, response, context, converseCallback);
+ //response.say(handler.t('TRY_AGAIN')).send();
+}
+
+
     //pre processing before the request evaluation
     evaluation: (request, evaluationResponse, context) => {
         handler.evaluateRequest(request, evaluationResponse, context, evaluationCallback);
     },
     // this is the entities action, routing by entity will lead here
+    
+    
+    
+    
     entities: (request, response, context) => {
         handler.converse(request, response, context, converseCallback);
     }
