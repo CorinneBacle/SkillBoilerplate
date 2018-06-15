@@ -90,7 +90,7 @@ const stateDefaultActions = handler.createActionsHandler({
     },
     //this is an example of an intent using wcs - in order for this to work you need your own wcs workspace and intents
     //and change the intents name with your own
-    'hello-world-wcs': (request, response, context) => {
+    'tell-me-a-joke': (request, response, context) => {
         handler.converse(request, response, context, converseCallback);
     },
     'unhandled': (request, response, context) => {
