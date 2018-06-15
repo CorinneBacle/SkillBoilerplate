@@ -2,11 +2,11 @@
   "name": "BoilerplateSkill",
   "version": "1.0.0",
   "private": true,
-  "description": "Remote skill boilerplate using contarct v1",
+  "description": "Remote skill boilerplate using contract v1",
   "keywords": [
     "skill"
   ],
-  "author": "your name",
+  "author": "Corinne Bacle",
   "license": "Apache-2.0",
   "main": "./index.js",
   "dependencies": {
